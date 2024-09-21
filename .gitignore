@@ -1,0 +1,8 @@
+*
+vendor
+!*.go
+!*.mod
+!*.sum
+!.gitignore
+!*.md
+!*/
