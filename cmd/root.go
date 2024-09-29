@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	get "birthday-cli/cmd/get"
-	add "birthday-cli/cmd/add"
-	edit "birthday-cli/cmd/edit"
-	delete "birthday-cli/cmd/delete"
-	"birthday-cli/config"
+	get "github.com/sanusomya/birthday-cli/cmd/get"
+	add "github.com/sanusomya/birthday-cli/cmd/add"
+	edit "github.com/sanusomya/birthday-cli/cmd/edit"
+	delete "github.com/sanusomya/birthday-cli/cmd/delete"
+	"github.com/sanusomya/birthday-cli/config"
 	"fmt"
 	"os"
 	"github.com/spf13/cobra"

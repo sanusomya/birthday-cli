@@ -1,4 +1,4 @@
-module birthday-cli
+module github.com/sanusomya/birthday-cli
 
 go 1.23.0
 

@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/birthday"
 	"encoding/json"
 	"fmt"
 )

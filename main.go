@@ -1,8 +1,8 @@
 package main
 
 import (
-	"birthday-cli/cmd"
-	"birthday-cli/utils"
+	"github.com/sanusomya/birthday-cli/cmd"
+	"github.com/sanusomya/birthday-cli/utils"
 )
 
 func main() {

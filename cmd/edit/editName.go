@@ -1,7 +1,7 @@
 package edit
 
 import (
-	"birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/config"
 	"bytes"
 	"fmt"
 	"io/ioutil"

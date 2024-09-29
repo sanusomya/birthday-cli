@@ -1,8 +1,8 @@
 package add
 
 import (
-	"birthday-cli/config"
-	"birthday-cli/utils"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 	"fmt"
 	"io/ioutil"
 	"log"

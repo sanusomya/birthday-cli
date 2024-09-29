@@ -1,9 +1,9 @@
 package add
 
 import (
-	"birthday-cli/birthday"
-	"birthday-cli/config"
-	"birthday-cli/utils"
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
