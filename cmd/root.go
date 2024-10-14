@@ -1,13 +1,15 @@
 package cmd
 
 import (
-	get "github.com/sanusomya/birthday-cli/cmd/get"
-	add "github.com/sanusomya/birthday-cli/cmd/add"
-	edit "github.com/sanusomya/birthday-cli/cmd/edit"
-	delete "github.com/sanusomya/birthday-cli/cmd/delete"
-	"github.com/sanusomya/birthday-cli/config"
 	"fmt"
 	"os"
+
+	add "github.com/sanusomya/birthday-cli/cmd/add"
+	delete "github.com/sanusomya/birthday-cli/cmd/delete"
+	edit "github.com/sanusomya/birthday-cli/cmd/edit"
+	get "github.com/sanusomya/birthday-cli/cmd/get"
+	"github.com/sanusomya/birthday-cli/cmd/wish"
+	"github.com/sanusomya/birthday-cli/config"
 	"github.com/spf13/cobra"
 )
 
@@ -34,4 +36,5 @@ func init() {
 	Root.AddCommand(add.CmdAdd)
 	Root.AddCommand(delete.CmdDelete)
 	Root.AddCommand(edit.CmdEdit)
+	Root.AddCommand(wish.CmdWish)
 }

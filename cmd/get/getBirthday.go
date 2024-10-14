@@ -1,13 +1,14 @@
 package add
 
 import (
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -41,7 +42,7 @@ func runGet(cmd *cobra.Command, args []string) {
 	}
 
 	if today {
-		allBirthdaysToday()
+		AllBirthdaysToday()
 		return
 	}
 	if month {

@@ -1,8 +1,6 @@
 package add
 
 import (
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,9 +9,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 )
 
-func allBirthdaysToday() {
+func AllBirthdaysToday() []byte{
 
 	url := config.GetUrl()
 	now := time.Now()
@@ -34,4 +35,5 @@ func allBirthdaysToday() {
 		log.Fatal(err)
 	}
 	utils.Print(responseData)
+	return responseData
 }
