@@ -42,10 +42,10 @@ func runDelete(cmd *cobra.Command, args []string) {
 	url := config.GetUrl()
 
 	temp := birthday.Birthday{}
-	temp.Name = name
-	temp.Month = month
-	temp.Date = int8(dateAsInt)
-	temp.Mobile = int64(mobileAsInt)
+	temp.Person = name
+	temp.Birthmonth = month
+	temp.Birthdate = int8(dateAsInt)
+	temp.Cell = int64(mobileAsInt)
 
 	jsonValue, _ := json.Marshal(temp)
 

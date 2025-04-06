@@ -11,9 +11,13 @@ func PrintSingleObject(res []byte) {
 	err := json.Unmarshal(res, &bday)
 	if err != nil {
 		fmt.Println(string(res))
+		return
 	}
-
-	fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Name, bday.Date, bday.Month)
+	if bday.Cell == 0{
+		fmt.Println(string(res))
+		return
+	}
+	fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Person, bday.Birthdate, bday.Birthmonth)
 	fmt.Println()
 }
 
@@ -24,7 +28,7 @@ func Print(res []byte) {
 		fmt.Println(string(res))
 	}
 	for _, bday := range birthday {
-		fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Name, bday.Date, bday.Month)
+		fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Person, bday.Birthdate, bday.Birthmonth)
 		fmt.Println()
 	}
 

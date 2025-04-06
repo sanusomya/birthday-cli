@@ -40,7 +40,7 @@ func runGet(cmd *cobra.Command, args []string) {
 			os.Exit(1)
 		}
 		for _, birthdays := range birth {
-			name := birthdays.Name
+			name := birthdays.Person
 			sendMessage(name)
 		}
 	default:
@@ -63,7 +63,7 @@ func runGet(cmd *cobra.Command, args []string) {
 		}
 		names := []string{}
 		for _, bdays := range birth {
-			names = append(names, strings.ToLower(bdays.Name))
+			names = append(names, strings.ToLower(bdays.Person))
 		}
 		for _, name := range user {
 			if slices.Contains(names, strings.ToLower(name)) {

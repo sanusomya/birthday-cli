@@ -17,7 +17,7 @@ var cmdEditMobile = &cobra.Command{
 	Aliases:    []string{"mob"},
 	SuggestFor: []string{"mobi", "mo", "moble"},
 	Short:      "use this command to edit name of the entry from birthdays",
-	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> editname <data>",
+	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> <new number>",
 	Version:    config.Version,
 	//PreRun:            utils.ValidFlags,
 	Run:               runEditMobile,

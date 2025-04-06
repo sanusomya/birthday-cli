@@ -16,7 +16,7 @@ var cmdEditName = &cobra.Command{
 	Use:        "name",
 	SuggestFor: []string{"nam", "ame"},
 	Short:      "use this command to edit name of the entry from birthdays",
-	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> editname <data>",
+	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> <new name>",
 	Version:    config.Version,
 	//PreRun:            utils.ValidFlags,
 	Run:               runEditName,
