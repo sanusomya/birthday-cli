@@ -18,7 +18,7 @@ func allBirthdaysMonth() {
 	now := time.Now()
 	month := now.Month().String()
 	month = strings.ToLower(month[:3])
-	url = url + "month?month=" + month
+	url = url + "/month?month=" + month
 
 	response, err := http.Get(url)
 

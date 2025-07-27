@@ -17,7 +17,7 @@ var cmdEditMobile = &cobra.Command{
 	Aliases:    []string{"mob"},
 	SuggestFor: []string{"mobi", "mo", "moble"},
 	Short:      "use this command to edit name of the entry from birthdays",
-	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> <new number>",
+	Example:    "birthday edit mobile -name <data> -mobile <data> <new number>",
 	Version:    config.Version,
 	//PreRun:            utils.ValidFlags,
 	Run:               runEditMobile,
@@ -36,7 +36,7 @@ func runEditMobile(cmd *cobra.Command, args []string) {
 	url := config.GetUrl()
 
 	client := &http.Client{}
-	url = url + "edit/number?name=" + name + "&mobile=" + mobile
+	url = url + "/number?name=" + name + "&mobile=" + mobile
 	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer([]byte(args[0])))
 	if err != nil {
 		fmt.Print(err.Error())

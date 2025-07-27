@@ -21,7 +21,7 @@ func AllBirthdaysToday() []byte{
 	date := strconv.Itoa(now.Day())
 	month := now.Month().String()
 	month = strings.ToLower(month[:3])
-	url = url + "today?month=" + month + "&date=" + date
+	url = url + "/today?month=" + month + "&date=" + date
 
 	response, err := http.Get(url)
 

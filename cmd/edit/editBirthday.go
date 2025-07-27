@@ -1,9 +1,6 @@
 package edit
 
 import (
-	"github.com/sanusomya/birthday-cli/birthday"
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -12,6 +9,10 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -46,7 +47,7 @@ func runEdit(cmd *cobra.Command, args []string) {
 
 	jsonValue, _ := json.Marshal(temp)
 
-	url = url + "edit/?name=" + name + "&mobile=" + phone
+	url = url + "?name=" + name + "&mobile=" + phone
 
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(jsonValue))
