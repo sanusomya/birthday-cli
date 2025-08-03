@@ -49,13 +49,20 @@ func runDelete(cmd *cobra.Command, args []string) {
 
 	jsonValue, _ := json.Marshal(temp)
 
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodDelete, url, bytes.NewBuffer(jsonValue))
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())

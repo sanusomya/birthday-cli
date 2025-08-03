@@ -35,6 +35,11 @@ func runEditMobile(cmd *cobra.Command, args []string) {
 
 	url := config.GetUrl()
 
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
 	client := &http.Client{}
 	url = url + "/number?name=" + name + "&mobile=" + mobile
 	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer([]byte(args[0])))
@@ -42,7 +47,9 @@ func runEditMobile(cmd *cobra.Command, args []string) {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())

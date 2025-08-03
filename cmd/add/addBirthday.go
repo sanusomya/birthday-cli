@@ -1,9 +1,6 @@
 package add
 
 import (
-	"github.com/sanusomya/birthday-cli/birthday"
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -13,8 +10,13 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
+
 	"github.com/spf13/cobra"
 )
+
 var name string
 var month string
 var date string
@@ -33,7 +35,6 @@ var CmdAdd = &cobra.Command{
 
 func runAdd(cmd *cobra.Command, args []string) {
 
-
 	dateAsInt, _ := strconv.Atoi(date)
 	mobileAsInt, _ := strconv.Atoi(phone)
 
@@ -46,7 +47,30 @@ func runAdd(cmd *cobra.Command, args []string) {
 	temp.Cell = int64(mobileAsInt)
 
 	jsonValue, _ := json.Marshal(temp)
-	response, err := http.Post(url, "application/json", bytes.NewBuffer(jsonValue))
+
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonValue))
+	if err != nil {
+		fmt.Printf("Error creating request: %v\n", err)
+		os.Exit(1)
+	}
+
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
+
+	client := &http.Client{}
+
+	response, err := client.Do(req)
+	if err != nil {
+		fmt.Printf("Error sending request: %v\n", err)
+		os.Exit(1)
+	}
+	defer response.Body.Close()
 
 	if err != nil {
 		fmt.Print(err.Error())

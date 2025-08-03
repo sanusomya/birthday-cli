@@ -37,12 +37,20 @@ func runEditName(cmd *cobra.Command, args []string) {
 
 	client := &http.Client{}
 	url = url + "/name?name=" + name + "&mobile=" + mobile
+
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
 	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer([]byte(args[0])))
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())

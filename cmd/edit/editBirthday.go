@@ -47,6 +47,11 @@ func runEdit(cmd *cobra.Command, args []string) {
 
 	jsonValue, _ := json.Marshal(temp)
 
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
 	url = url + "?name=" + name + "&mobile=" + phone
 
 	client := &http.Client{}
@@ -55,7 +60,9 @@ func runEdit(cmd *cobra.Command, args []string) {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())
