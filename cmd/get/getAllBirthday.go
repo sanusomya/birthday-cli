@@ -6,22 +6,13 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
-	"strings"
-	"time"
 
 	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 )
 
-func AllBirthdaysToday() []byte {
+func AllBirthdays() []byte {
 
 	url := config.GetUrl()
-	now := time.Now()
-	date := strconv.Itoa(now.Day())
-	month := now.Month().String()
-	month = strings.ToLower(month[:3])
-	url = url + "/today?month=" + month + "&date=" + date
 
 	headers := map[string]string{
 		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
@@ -56,6 +47,5 @@ func AllBirthdaysToday() []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
-	utils.Print(responseData)
 	return responseData
 }
