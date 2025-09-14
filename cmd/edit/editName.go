@@ -1,13 +1,14 @@
 package edit
 
 import (
-	"github.com/sanusomya/birthday-cli/config"
 	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/sanusomya/birthday-cli/config"
 
 	"github.com/spf13/cobra"
 )
@@ -16,7 +17,7 @@ var cmdEditName = &cobra.Command{
 	Use:        "name",
 	SuggestFor: []string{"nam", "ame"},
 	Short:      "use this command to edit name of the entry from birthdays",
-	Example:    "birthday edit -name <data> -day <data> -month <data> -mobile <data> <new name>",
+	Example:    "birthday edit name -name <data> -mobile <data> <new name>",
 	Version:    config.Version,
 	//PreRun:            utils.ValidFlags,
 	Run:               runEditName,
@@ -35,13 +36,21 @@ func runEditName(cmd *cobra.Command, args []string) {
 	url := config.GetUrl()
 
 	client := &http.Client{}
-	url = url + "edit/name?name=" + name + "&mobile=" + mobile
-	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer([]byte("\""+args[0]+"\"")))
+	url = url + "/name?name=" + name + "&mobile=" + mobile
+
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
+	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer([]byte(args[0])))
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())

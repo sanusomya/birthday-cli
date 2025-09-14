@@ -1,12 +1,6 @@
-package add
+package get
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"os"
-
 	"github.com/sanusomya/birthday-cli/config"
 	"github.com/sanusomya/birthday-cli/utils"
 
@@ -27,19 +21,7 @@ var CmdGet = &cobra.Command{
 
 func runGet(cmd *cobra.Command, args []string) {
 
-	url := config.GetUrl()
-
-	response, err := http.Get(url)
-
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
-
-	responseData, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+	responseData := AllBirthdays()
 
 	if today {
 		AllBirthdaysToday()

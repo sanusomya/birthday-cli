@@ -1,9 +1,6 @@
 package edit
 
 import (
-	"github.com/sanusomya/birthday-cli/birthday"
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -12,6 +9,10 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -46,7 +47,12 @@ func runEdit(cmd *cobra.Command, args []string) {
 
 	jsonValue, _ := json.Marshal(temp)
 
-	url = url + "edit/?name=" + name + "&mobile=" + phone
+	headers := map[string]string{
+		"Authorization": fmt.Sprintf("%s", os.Getenv("token")),
+		"Content-Type":  "application/json",
+	}
+
+	url = url + "?name=" + name + "&mobile=" + phone
 
 	client := &http.Client{}
 	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(jsonValue))
@@ -54,7 +60,9 @@ func runEdit(cmd *cobra.Command, args []string) {
 		fmt.Print(err.Error())
 		os.Exit(1)
 	}
-	req.Header.Set("Content-Type", "application/json")
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	response, err := client.Do(req)
 	if err != nil {
 		fmt.Print(err.Error())
