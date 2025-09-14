@@ -1,8 +1,8 @@
 package birthday
 
 type Birthday struct {
-	Person string
-	Birthmonth string
-	Birthdate int8
-	Cell int64
+	Name string
+	Month string
+	Date int8
+	Mobile int64
 }

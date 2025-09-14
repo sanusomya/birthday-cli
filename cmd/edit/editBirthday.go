@@ -1,9 +1,6 @@
 package edit
 
 import (
-	"github.com/sanusomya/birthday-cli/birthday"
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -12,6 +9,10 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
 
 	"github.com/spf13/cobra"
 )
@@ -39,10 +40,10 @@ func runEdit(cmd *cobra.Command, args []string) {
 	url := config.GetUrl()
 
 	temp := birthday.Birthday{}
-	temp.Person = name
-	temp.Birthmonth = month
-	temp.Birthdate = int8(dateAsInt)
-	temp.Cell = int64(mobileAsInt)
+	temp.Name = name
+	temp.Month = month
+	temp.Date = int8(dateAsInt)
+	temp.Mobile = int64(mobileAsInt)
 
 	jsonValue, _ := json.Marshal(temp)
 
@@ -69,7 +70,7 @@ func runEdit(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	CmdEdit.PersistentFlags().StringVarP(&name, "name", "n", "", "name of person")
+	CmdEdit.PersistentFlags().StringVarP(&name, "name", "n", "", "name of Name")
 	CmdEdit.PersistentFlags().StringVarP(&month, "month", "m", "", "month")
 	CmdEdit.PersistentFlags().StringVarP(&date, "date", "d", "", "date")
 	CmdEdit.PersistentFlags().StringVarP(&phone, "phone", "p", "", "phone number")

@@ -8,7 +8,6 @@ import (
 	delete "github.com/sanusomya/birthday-cli/cmd/delete"
 	edit "github.com/sanusomya/birthday-cli/cmd/edit"
 	get "github.com/sanusomya/birthday-cli/cmd/get"
-	"github.com/sanusomya/birthday-cli/cmd/wish"
 	"github.com/sanusomya/birthday-cli/config"
 	"github.com/spf13/cobra"
 )
@@ -36,5 +35,4 @@ func init() {
 	Root.AddCommand(add.CmdAdd)
 	Root.AddCommand(delete.CmdDelete)
 	Root.AddCommand(edit.CmdEdit)
-	Root.AddCommand(wish.CmdWish)
 }

@@ -13,12 +13,11 @@ func PrintSingleObject(res []byte) {
 		fmt.Println(string(res))
 		return
 	}
-	if bday.Cell == 0{
+	if bday.Mobile == 0{
 		fmt.Println(string(res))
 		return
 	}
-	fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Person, bday.Birthdate, bday.Birthmonth)
-	fmt.Println()
+	fmt.Printf("Name: %v, Date: %v, Month: %v\n", bday.Name, bday.Date, bday.Month)
 }
 
 func Print(res []byte) {
@@ -28,8 +27,7 @@ func Print(res []byte) {
 		fmt.Println(string(res))
 	}
 	for _, bday := range birthday {
-		fmt.Printf("Name: %v, Date: %v, Month: %v", bday.Person, bday.Birthdate, bday.Birthmonth)
-		fmt.Println()
+		fmt.Printf("Name: %v, Date: %v, Month: %v\n", bday.Name, bday.Date, bday.Month)
 	}
 
 }

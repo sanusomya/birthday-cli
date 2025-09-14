@@ -1,9 +1,6 @@
 package add
 
 import (
-	"github.com/sanusomya/birthday-cli/birthday"
-	"github.com/sanusomya/birthday-cli/config"
-	"github.com/sanusomya/birthday-cli/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -13,8 +10,13 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/sanusomya/birthday-cli/birthday"
+	"github.com/sanusomya/birthday-cli/config"
+	"github.com/sanusomya/birthday-cli/utils"
+
 	"github.com/spf13/cobra"
 )
+
 var name string
 var month string
 var date string
@@ -33,17 +35,16 @@ var CmdAdd = &cobra.Command{
 
 func runAdd(cmd *cobra.Command, args []string) {
 
-
 	dateAsInt, _ := strconv.Atoi(date)
 	mobileAsInt, _ := strconv.Atoi(phone)
 
 	url := config.GetUrl()
 
 	temp := birthday.Birthday{}
-	temp.Person = name
-	temp.Birthmonth = month
-	temp.Birthdate = int8(dateAsInt)
-	temp.Cell = int64(mobileAsInt)
+	temp.Name = name
+	temp.Month = month
+	temp.Date = int8(dateAsInt)
+	temp.Mobile = int64(mobileAsInt)
 
 	jsonValue, _ := json.Marshal(temp)
 	response, err := http.Post(url, "application/json", bytes.NewBuffer(jsonValue))
@@ -62,7 +63,7 @@ func runAdd(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	CmdAdd.Flags().StringVarP(&name, "name", "n", "", "name of person")
+	CmdAdd.Flags().StringVarP(&name, "name", "n", "", "name of Name")
 	CmdAdd.Flags().StringVarP(&month, "month", "m", "", "month")
 	CmdAdd.Flags().StringVarP(&date, "date", "d", "", "date")
 	CmdAdd.Flags().StringVarP(&phone, "phone", "p", "", "phone number")
